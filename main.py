@@ -47,10 +47,17 @@ def get_kst_time(format):
     kst_dt = utc_dt + datetime.timedelta(hours=9)
     return kst_dt.strftime(format)
 
+def get_signal(df):
+    BIL = df.loc['BIL', 'score']
+    top3 = df.iloc[2]['score']
+    handler = lambda x: '🤗' if x > BIL and x >= top3 else '🫥'
+    return df['score'].apply(handler)
+
 if __name__ == '__main__':
     from dotenv import load_dotenv
     load_dotenv()
     df = get_table()
-    title = f'채권동적자산배분(Novell) 커스텀 전략 모니터링 ({get_kst_time("%Y-%m-%d %H:%M:%S")})'
+    df['signal'] = get_signal(df)
+    title = f'Novell 커스텀 전략 모니터링 ({get_kst_time("%Y-%m-%d %H:%M:%S")})'
     body = df.to_markdown()
     send_issue(title, body)
