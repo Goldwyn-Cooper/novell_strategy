@@ -28,7 +28,7 @@ jobs:
               env:
                 assets: ${{ vars.assets }}
                 periods: ${{ vars.periods }}
-                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                GH_TOKEN: ${{ github.token }}
                 GH_OWNER: ${{ github.repository_owner }}
                 GH_REPO: ${{ github.event.repository.name }}
               run: python main.py
