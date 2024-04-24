@@ -10,6 +10,8 @@ jobs:
     #           run: echo ${{ github.repository_owner }}
     monitoring_manual:
         runs-on: ubuntu-latest
+        permissions:
+          issues: write
         steps:
             - name: 저장소 체크아웃
               uses: actions/checkout@v4
@@ -28,7 +30,8 @@ jobs:
               env:
                 assets: ${{ vars.assets }}
                 periods: ${{ vars.periods }}
-                GH_TOKEN: ${{ secrets.GH_TOKEN }}
+                GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                # GH_TOKEN: ${{ secrets.GH_TOKEN }}
                 GH_OWNER: ${{ github.repository_owner }}
                 GH_REPO: ${{ github.event.repository.name }}
               run: python main.py
