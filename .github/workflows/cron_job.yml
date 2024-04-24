@@ -6,6 +6,8 @@ on:
 jobs:
     monitoring_by_schedule:
         runs-on: ubuntu-latest
+        permissions:
+          issues: write
         steps:
             - name: 저장소 체크아웃
               uses: actions/checkout@v4
