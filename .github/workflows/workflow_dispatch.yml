@@ -5,7 +5,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - name: repository 정보 출력 
-              run: echo ${{ github.repository }}
+              run: echo ${{ github.event.repository.name }}
             - name: repository 소유자 정보 출력
               run: echo ${{ github.repository_owner }}
     # monitoring_manual:
