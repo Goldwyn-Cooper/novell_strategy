@@ -3,6 +3,7 @@ on:
     schedule:
       # 주중 오전 11시에 실행
         - cron: '0 2 * * 1-5'
+    workflow_dispatch:
 jobs:
     monitoring_by_schedule:
         runs-on: ubuntu-latest
